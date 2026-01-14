@@ -1,5 +1,5 @@
 //encapsulation
-class Bank{
+class Bank1{
     // private set-cannot change the value from outside
     var balance:Int=0 
     private set
@@ -91,8 +91,64 @@ class Child:Parent(){
         println("Child class is reading..")
     }
 }
+//abstract class doesnt have objects. we cannot create objects to abstract class
+abstract class Bank{
+    var balance:Int=0
+    //abstract methods doesnt have defenitions and it is defined in its child class only
+    abstract fun deposit(x:Int)
+    abstract fun detuct(x:Int)
+    fun get_balance(){
+        println("The current balance is:$balance")
+    }
+}
+class Savings_Account:Bank(){
+    override fun deposit(x:Int){
+        if(x<0){
+            println("Invalid amount")
+        }
+        else{
+            balance+=x
+            println("Amount deposited successfully and the current balance is:$balance")
+        }
+    }
+    override fun detuct(x:Int){
+        if(x>balance){
+            println("Amount not available")
+        }
+        else{
+            if(balance-x>=500){
+                balance-=x
+                println("Amount detucted successfully and the current balance is:$balance")
+            }
+            else{
+                println("Not possible. There should be atleast of rupee 500 in the account")
+            }
+        }
+    }
+}
+class CurrentAccout:Bank(){
+    override fun deposit(x:Int){
+        if(x<0){
+            println("Invalid amount")
+        }
+        else{
+            balance+=x
+            println("Amount deposited successfully and the current balance is:$balance")
+        }
+    }
+    override fun detuct(x:Int){
+        if(x>balance){
+            println("Amount not available")
+        }
+        else{
+            balance-=x
+            println("Amount detucted successfully and the current balance is:$balance")
+        }
+    }
+    
+}
 fun main(){
-    val bank=Bank()
+    val bank=Bank1()
     println(bank.balance)
     println("Balance:${bank.get_balance()}")
     bank.add_amount(1000)
@@ -128,4 +184,17 @@ fun main(){
     child.read()
     val parent=Parent()
     parent.read()
+    val save=Savings_Account()
+    save.deposit(1000)
+    save.deposit(500)
+    save.detuct(200)
+    save.get_balance()
+    save.detuct(1200)
+    println()
+    println()
+    println()
+    val curr=CurrentAccout()
+    curr.deposit(1000)
+    curr.detuct(1500)
+    curr.detuct(900)
 }
