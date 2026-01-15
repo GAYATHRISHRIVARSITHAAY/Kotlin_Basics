@@ -151,6 +151,8 @@ class Cat:Animal{
         println("Cat food")
     }
 }
+//data classes
+data class Person(val name:String,val age:Int)
 fun main(){
     val child=Child()
     child.read()
@@ -196,7 +198,22 @@ fun main(){
         val d:Dog=a1 as Dog
         d.eat()
     }
+    //like this also we can do
+    (a1 as Dog).eat()
     //another type(safe downcasting) only runs if a2 is a cat
     val c: Cat? = a2 as? Cat
     c?.eat()
+    val p=Person("Gayathri",21)
+    val p1=Person("Bunny",10)
+    //toString()
+    println(p)
+    println(p1)
+    //copy()
+    val p2=p1.copy(name="Jimmy")
+    println(p2)
+    //destructing
+    val (name1,age1)=p1
+    println("Name:$name1 and age is $age1")
+    //equals()
+    println(p1==p2)
 }
