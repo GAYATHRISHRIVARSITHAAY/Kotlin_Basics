@@ -107,7 +107,6 @@ open class This_Class(val name:String,val age:Int){
         println("Already given name is:${this.name}")
     }
 }
-
 //super keyword
 //accessing parent method
 open class Parent_Super1{
@@ -140,18 +139,18 @@ class Dog:Animal{
     override fun sound(){
         println("Bark")
     }
+    fun eat(){
+        println("Dog food")
+    }
 }
 class Cat:Animal{
     override fun sound(){
         println("Meow")
     }
+    fun eat(){
+        println("Cat food")
+    }
 }
-//upcasting
-//storing a child object inside a parent refernce
-
-//downcasting
-//converting a parent reference back into a child refernce
-
 fun main(){
     val child=Child()
     child.read()
@@ -178,6 +177,26 @@ fun main(){
     this_class.info("Shri")
     val dog=Dog()
     dog.sound()
+    dog.eat()
     val cat=Cat()
     cat.sound()
+    cat.eat()
+    //upcasting
+    //storing a child object inside a parent refernce
+    val a1:Animal=Dog()
+    val a2:Animal=Cat()
+    a1.sound()
+    a2.sound()
+    //these create error. So we use downcaste
+    //a1.eat()
+    //a2.eat()
+    //downcasting
+    //converting a parent reference back into a child refernce
+    if(a1 is Dog){
+        val d:Dog=a1 as Dog
+        d.eat()
+    }
+    //another type(safe downcasting) only runs if a2 is a cat
+    val c: Cat? = a2 as? Cat
+    c?.eat()
 }
